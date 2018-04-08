@@ -35,16 +35,17 @@
                     component: Login
                 },
                 {
-                    path: '/admin',
-                    name: 'Admin',
-                    component: Admin
+                    path: '*',
+                    redirect:"/"
                 }
             ],
             <!-- 路由类型： 默认为 hash  -->
             mode:"history"
         });
 
-    export default router;
+        export default router;
+
+        redirect属性：重定向路由
 
     vue实例引用配置好的路由：
 
@@ -68,7 +69,9 @@
         使用vue全局的 router-link 组件
 
         <div class="van" >
-            <router-link to="/" >主页</router-link>
+            <router-link to="/" tag="div" >主页</router-link>
             <router-link to="/login" >登录页</router-link>
             <router-link to="/about" >关于页</router-link>
         </div>
+
+        tag属性：指定路由最终渲染的html标签，默认为 a 标签
