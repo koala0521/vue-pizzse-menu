@@ -75,3 +75,16 @@
         </div>
 
         tag属性：指定路由最终渲染的html标签，默认为 a 标签
+
+    路由守卫：
+        全局守卫 路由跳转之前触发，需要手动执行 next() 否则路由不会跳转：
+        router.beforeEach( ( to ,from ,next )=>{
+            console.log("没有登陆");
+            next();
+        });
+        
+        后置钩子：
+        router.afterEach((to ,from )=>{
+
+        })
+

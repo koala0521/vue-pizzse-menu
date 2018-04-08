@@ -13,7 +13,7 @@ import Place from '@/components/about/place';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -65,4 +65,14 @@ export default new Router({
     }
   ],
   mode:"history"
-})
+});
+
+// 全局守卫 路由跳转之前触发，需要手动执行 next() 否则路由不会跳转
+router.beforeEach( ( to ,from ,next )=>{
+  console.log("没有登陆");
+  next();
+});
+
+// 后置钩子 router.afterEach(( to , from )=>{ }) ,路由跳转后触发，不常用
+
+export default router;
