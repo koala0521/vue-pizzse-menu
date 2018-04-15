@@ -40,7 +40,15 @@
                 }
             ],
             <!-- 路由类型： 默认为 hash  -->
-            mode:"history"
+            mode:"history",
+            <!-- 滚动控制 -->
+            ,scrollBehavior( to ,from , savedPosition ){
+                if( savedPosition ){
+                return savedPosition
+                }else{
+                return { x:0,y:0 }
+                }
+            }
         });
 
         export default router;
@@ -87,4 +95,10 @@
         router.afterEach((to ,from )=>{
 
         })
+    路由控制滚动条：
+    scrollBehavior 函数
+    
+    scrollBehavior( to , from , savedPosition )
 
+    三个参数分别为：即将进入的路由 ，出发的路由 ，已经保存的滚动条进度
+    

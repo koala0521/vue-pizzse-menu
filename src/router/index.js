@@ -65,6 +65,13 @@ const router = new Router({
     }
   ],
   mode:"history"
+  ,scrollBehavior( to ,from , savedPosition ){
+    if( savedPosition ){
+      return savedPosition
+    }else{
+      return { x:0,y:0 }
+    }
+  }
 });
 
 // 全局守卫 路由跳转之前触发，需要手动执行 next() 否则路由不会跳转
@@ -74,5 +81,9 @@ router.beforeEach( ( to ,from ,next )=>{
 });
 
 // 后置钩子 router.afterEach(( to , from )=>{ }) ,路由跳转后触发，不常用
+
+// scrollBehavior : 滚动控制  参数 savedPosition保存的滚动条的位置
+//  scrollBehavior 如果要自定义滚动条位置，需要返回一个对象对象 : { x:0 ，y: 0 }
+
 
 export default router;
