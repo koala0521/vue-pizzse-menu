@@ -4,9 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import axios from 'axios';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 Vue.config.productionTip = false
+
+axios.defaults.baseURL = 'https://wd2468178309upkmpi.wilddogio.com/'
 
 /* eslint-disable no-new */
 new Vue({
