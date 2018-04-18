@@ -11,6 +11,7 @@
                 type="email"
                 class="form-control"
                 v-model="email"
+                required
                 >
             </div>
             <div class="form-group">
@@ -19,6 +20,7 @@
                 type="password"
                 class="form-control"
                 v-model="password"
+                required
                 >
             </div>
             <div class="form-group">
@@ -27,6 +29,7 @@
                 type="password"
                 class="form-control"
                 v-model="confirmPassword"
+                required
                 >
             </div>
             <button type="submit" class="btn btn-block btn-success">注册</button>
@@ -49,7 +52,16 @@
     },
     "methods":{
       onSubmit(){
+        console.log( this.email , this.password , this.confirmPassword );
+        if( this.password !== this.confirmPassword ){
+          alert("两次输入密码不一致！");
+          return
+        }
 
+        this.$router.push({
+          name:"Login"
+        })
+        
       }
     }
   }
