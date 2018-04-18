@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <div class="col-sm-12">
+  <div class="row" >
+    
+    <!-- 菜单 -->
+    <div class="col-sm-12  col-md-8">
       <table class="table">
         <thead class="thead-default">
           <tr>
@@ -21,6 +23,30 @@
         </tbody>
       </table>
     </div>
+    <!-- 购物车 -->
+    <div class="col-sm-12 col-md-4">
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>数量</th>
+            <th>品种</th>
+            <th>价格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <button class="btn btn-sm">-</button>
+              <span>1</span>
+              <button class="btn btn-sm">+</button>
+            </td>
+            <td>榴莲9寸</td>
+            <td>38</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </template>
 
@@ -67,7 +93,7 @@ export default {
     }
   },
   methods:{
-    
+
   }
 }
 </script>
