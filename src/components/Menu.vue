@@ -112,7 +112,7 @@ export default {
   },
   "methods":{
     addItem( item , option ){
-      console.log( item , option );
+
        let obj = {
               name:item.name,
               num:1,

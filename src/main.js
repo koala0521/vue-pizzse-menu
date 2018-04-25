@@ -12,7 +12,6 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'https://wd2468178309upkmpi.wilddogio.com/'
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
