@@ -49,18 +49,17 @@
               <td>{{ item.name + item.size + "寸" }}</td>
               <td>{{ item.price * item.num }}</td>
             </tr>
-            <tr>
-              <td>合计：</td>
-              <td></td>
-              <td>{{ allPrice }} ￥ </td>
-            </tr>
           </tbody>
         </table>
+        <div>
+          <p>总价：{{ allPrice }} ￥ </p>
+          <button class="btn btn-success btn-block">提交</button>
+        </div>
         
       </div>
 
       <div v-show="!cart.length" >
-        <h3>购物车空空如也！</h3>
+        <h4>空空如也！o(╥﹏╥)o</h4>
       </div>
     </div>
 
