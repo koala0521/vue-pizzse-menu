@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8">
       <!-- new pizza -->
-      <app-new-pizza></app-new-pizza>
+      <app-new-pizza v-on:additem="addData" ></app-new-pizza>
     </div>
     <div class="col-sm-12 col-md-4">
       <!-- 品种展示 -->
@@ -78,6 +78,12 @@
         if( !this.getMenuItems.length ){
           this.$router.push({name:"Menu"});
         }
+      },
+      addData(payload){
+
+        this.getMenuItems.push( payload.item );
+        console.log( this.getMenuItems );
+        
       }
     },
       // 生命周期函数

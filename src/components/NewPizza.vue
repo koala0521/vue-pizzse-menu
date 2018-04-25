@@ -52,22 +52,22 @@
         data(){
             return {
                 newPizza:{
-                    "name":"",
-                    "description":"",
-                    "size1":"",
-                    "price1":"",
-                    "size2":"",
-                    "price2":""
+                  "name":"",
+                  "description":"",
+                  "size1":"",
+                  "price1":"",
+                  "size2":"",
+                  "price2":""
                 }
             }
         },
         methods:{
             addMenuItem(){
-                console.log( this.newPizza );
+                
                 let data = {
-                    name:this.newPizza.name,
-                    description:this.newPizza.description,
-                    options:[
+                    "name":this.newPizza.name,
+                    "description":this.newPizza.description,
+                    "options":[
                         {
                             size:this.newPizza.size1,
                             price:this.newPizza.price1
@@ -76,12 +76,16 @@
                             size:this.newPizza.size2,
                             price:this.newPizza.price2
                         }
-                    ]
+                    ],
+
+                    "id":Math.random()
                 }
 
-                // 发送请求保存数据
-                
-                this.$router.push({name:"Menu"});
+                // 触发自定义事件，有父组件改变数据，保证单向数据流
+                this.$emit("additem",{
+                  "item":data
+                });
+                // this.$router.push({name:"Menu"});
             }
         }
     }
