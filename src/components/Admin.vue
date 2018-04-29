@@ -14,7 +14,7 @@
             <th>删除</th>
           </tr>
         </thead>
-        <tbody v-for="item in getMenuItems" :key="item.name">
+        <tbody v-for="item in this.$store.state.getMenuItems" :key="item.name">
           <tr>
             <td>{{item.name}}</td>
             <td>
@@ -35,41 +35,9 @@
     components:{
       "app-new-pizza":NewPizza
     },
-    data(){
-      return {
-        getMenuItems:[
-          {
-            name:"榴莲pizza",
-            description:"榴莲pizza...",
-            options:[
-                {
-                    size:"7",
-                    price:"39"
-                },
-                {
-                    size:"9",
-                    price:"69"
-                }
-            ],
-            id:Math.random()
-        },{
-            name:"芝士pizza",
-            description:"芝士pizza...",
-            options:[
-                {
-                    size:"7",
-                    price:"39"
-                },
-                {
-                    size:"9",
-                    price:"69"
-                }
-            ],
-            id:Math.random()
-        }
-        ]
-      }
-    },
+    // data(){
+    //   return {}
+    // },
     methods:{
       deleteData( id ){
         this.getMenuItems = this.getMenuItems.filter(el=>{
@@ -88,7 +56,6 @@
     },
       // 生命周期函数
     created(){
-
             // 数据同步
             // this.$store.commit('setMenuItems',menuArray)
             // this.getMenuItems = menuArray
