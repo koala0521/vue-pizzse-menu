@@ -19,10 +19,46 @@ const store = new Vuex.Store({
         // 获取数据
     },
     mutations:{
-        // 所有改编数据的方法
+        // 所有改变数据的方法
+        addItem( state , payload ){
+
+            let { item } = payload;
+            state.cart.push( item );
+        },
+        addCounter( state , payload ){
+            let { item } = payload;
+            
+            let index = state.cart.findIndex((v)=>{
+                console.log( v );
+                
+                return v.id === item.id && v.size === item.size
+            });
+            ++state.cart[ index ].num;
+        },
+        reduceCounter( state , payload ){
+            let { item } = payload;
+            
+            let index = state.cart.findIndex((v)=>{
+                return v.id === item.id && v.size === item.size
+            });
+            --state.cart[ index ].num;
+            if( state.cart[ index ].num <= 0 ){
+                state.cart.splice( index , 1 );
+            }
+        }
     },
     actions:{
         // 根据不用的指令，调用不同的改变数据的方法
+        ADD_ITEM( { commit } , payload ){
+
+            commit("addItem" , payload );
+        },
+        ADD_COUNT( { commit } , payload ){
+            commit( "addCounter" , payload );
+        },
+        REDUCE_COUNT( { commit } , payload ){
+            commit( "reduceCounter" , payload );
+        }
     }
 });
 

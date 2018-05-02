@@ -40,11 +40,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in cart" :key="item.name + item.size" >
+            <tr v-for="item in cart" :key="item.id + '' + item.size" >
               <td>
-                <button class="btn btn-sm" @click="cartBtn(item ,'minus')" >-</button>
+                <button class="btn btn-sm" @click="reduceCounter(item)" >-</button>
                 <span>{{ item.num }}</span>
-                <button class="btn btn-sm"  @click="cartBtn(item ,'add')"  >+</button>
+                <button class="btn btn-sm"  @click="addCounter(item)"  >+</button>
               </td>
               <td>{{ item.name + item.size + "寸" }}</td>
               <td>{{ item.price * item.num }}</td>
@@ -71,7 +71,7 @@ export default {
   
   data(){
     return {
-      "cart":[]
+      // "cart":[]
     }
   },
   "methods":{
@@ -80,30 +80,32 @@ export default {
        let obj = {
               name:item.name,
               num:1,
+              id:item.id,
               ...option
             };
-      var hasItem = this.cart.find(item=>{
-          return item.name === obj.name && item.size === obj.size
-      });  
 
+      var hasItem = this.cart.find(item=>{
+
+          return item.id === obj.id && item.size === obj.size
+      });  
+      console.log( "hasItem" , hasItem );
+      
       if( hasItem ){
-        
-        hasItem.num = ++hasItem.num;
+
+        this.$store.dispatch("ADD_COUNT" , { item:obj } ); 
 
       }else{
-        this.cart.push( obj );
+
+        this.$store.dispatch( "ADD_ITEM" , { item:obj } );
       } 
 
     },
-    cartBtn( item , type ){
-      item.num = type === "add" ? ++item.num  : --item.num ;
-      let index = this.cart.findIndex(el=>{
-        return el === item
-      });
-      if( item.num === 0 ){
-        this.cart.splice( index , 1 );
-      }
-    }
+    addCounter( obj ){
+      this.$store.dispatch("ADD_COUNT" , { item:obj } ); 
+    },
+    reduceCounter( obj ){
+      this.$store.dispatch("REDUCE_COUNT" , { item:obj } ); 
+    },
   },
   "computed":{
     allPrice(){
@@ -112,6 +114,10 @@ export default {
         price += item.price * item.num;
       });
       return price
+    },
+    cart(){
+
+      return this.$store.state.cart;
     }
   }
 }
