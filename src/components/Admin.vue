@@ -39,18 +39,13 @@
     //   return {}
     // },
     methods:{
-      deleteData( id ){
-        this.getMenuItems = this.getMenuItems.filter(el=>{
-          return el.id !== id
-        });
-        if( !this.getMenuItems.length ){
-          this.$router.push({name:"Menu"});
-        }
+      deleteData( payload ){
+
+        // this.$store.dispatch('');
       },
       addData(payload){
-
-        this.getMenuItems.push( payload.item );
-        console.log( this.getMenuItems );
+        console.log(payload);
+         // this.$store.dispatch('');
         
       }
     },

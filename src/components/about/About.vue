@@ -10,3 +10,15 @@
 
 </template>
 
+<script>
+  export default {
+    data(){
+      return {
+        // 当前路由的所有嵌套路径
+        matchs:this.$route.matched
+      }
+    },
+  };
+  
+</script>
+
