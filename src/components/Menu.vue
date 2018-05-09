@@ -1,7 +1,5 @@
 <template>
   <div class="row" >
-    
-    <!-- 菜单 -->
     <div class="col-sm-12  col-md-8">
       <table class="table">
         <thead class="thead-default">
