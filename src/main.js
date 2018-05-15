@@ -8,6 +8,7 @@ import store from './store';
 import axios from 'axios';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import './common/css/global.css';
 
 Vue.config.productionTip = false
 

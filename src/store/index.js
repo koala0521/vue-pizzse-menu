@@ -20,21 +20,24 @@ const store = new Vuex.Store({
     },
     mutations:{
         // 所有改变数据的方法
+
+        // 加入购物车
         addItem( state , payload ){
 
             let { item } = payload;
             state.cart.push( item );
         },
+        // 增加购物车物品数量
         addCounter( state , payload ){
             let { item } = payload;
             
             let index = state.cart.findIndex((v)=>{
-                console.log( v );
                 
                 return v.id === item.id && v.size === item.size
             });
             ++state.cart[ index ].num;
         },
+        // 减少购物车商品数量
         reduceCounter( state , payload ){
             let { item } = payload;
             
