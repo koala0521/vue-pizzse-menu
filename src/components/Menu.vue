@@ -65,59 +65,66 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  
-  data(){
+  data() {
     return {
       // "cart":[]
+    };
+  },
+  methods: {
+	//  mapActions 包装函数 
+    ...mapActions({
+      add: "ADD_COUNT",
+      reduce: "REDUCE_COUNT",
+      addNew: "ADD_ITEM"
+    }),
+
+    addItem(item, option) {
+
+      let obj = {
+        name: item.name,
+        num: 1,
+        id: item.id,
+        ...option
+      };
+
+      var hasItem = this.cart.find(item => {
+        return item.id === obj.id && item.size === obj.size;
+      });
+
+      if (hasItem) {
+        this.add({ item: obj });
+      } else {
+		  
+        this.addNew({ item: obj });
+        // this.$store.dispatch( "ADD_ITEM" , { item:obj } );
+      }
+    },
+    addCounter(obj) {
+      // this.$store.dispatch("ADD_COUNT" , { item:obj } );
+
+      // 和上面的写法一样 利用了  mapActions 简化了而已
+      this.add({ item: obj });
+    },
+    reduceCounter(obj) {
+      //  this.$store.dispatch("REDUCE_COUNT" , { item:obj } );
+      this.reduce({ item: obj });
     }
   },
-  "methods":{
-    addItem( item , option ){
-
-       let obj = {
-              name:item.name,
-              num:1,
-              id:item.id,
-              ...option
-            };
-
-      var hasItem = this.cart.find(item=>{
-
-          return item.id === obj.id && item.size === obj.size
-      });  
-      console.log( "hasItem" , hasItem );
-      
-      if( hasItem ){
-
-        this.$store.dispatch("ADD_COUNT" , { item:obj } ); 
-
-      }else{
-
-        this.$store.dispatch( "ADD_ITEM" , { item:obj } );
-      } 
-
-    },
-    addCounter( obj ){
-      this.$store.dispatch("ADD_COUNT" , { item:obj } ); 
-    },
-    reduceCounter( obj ){
-      this.$store.dispatch("REDUCE_COUNT" , { item:obj } ); 
-    },
-  },
-  "computed":{
-    allPrice(){
+  computed: {
+    allPrice() {
       let price = 0;
-      this.cart.forEach(item=>{
+      this.cart.forEach(item => {
         price += item.price * item.num;
       });
-      return price
+      return price;
     },
-    cart(){
-
+    cart() {
       return this.$store.state.cart;
     }
   }
-}
+};
 </script>
 
