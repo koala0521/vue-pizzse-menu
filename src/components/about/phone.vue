@@ -18,6 +18,10 @@
         console.log( `path${ this.$route.path }` );  
         return this.$route.path;
       }
+    },
+    mounted(){
+      console.log( this.$route.matched );
+      
     }
   }
   
